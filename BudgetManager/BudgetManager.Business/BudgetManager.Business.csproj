@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{56713091-8A7C-4A5A-B097-E2AA5DBA45BF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BudgetManager.Business</RootNamespace>
+    <AssemblyName>BudgetManager.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BudgetManager.SqlEnums">
+      <HintPath>..\BudgetManager.SqlEnums.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.95\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bank\BankAccountManager.cs" />
+    <Compile Include="Bank\BankManager.cs" />
+    <Compile Include="BankTransaction\AbsaBankTransactionsDuplicateRemover.cs" />
+    <Compile Include="BankTransaction\BankTransactionsManager.cs" />
+    <Compile Include="BankTransaction\Imports\FirstNationalBankImportManagerBusiness.cs" />
+    <Compile Include="BankTransaction\Imports\StandardBankImportManagerBusiness.cs" />
+    <Compile Include="Base\UserBusinessBase.cs" />
+    <Compile Include="Budget\BudgetManager.cs" />
+    <Compile Include="BankTransaction\Imports\AbsaImportManager.cs" />
+    <Compile Include="BankTransaction\Imports\ImportManagerBusinessBase.cs" />
+    <Compile Include="Base\BusinessBase.cs" />
+    <Compile Include="DataManagement.cs" />
+    <Compile Include="Error\ErrorManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RuleEngine.cs" />
+    <Compile Include="UserManager.cs" />
+    <Compile Include="Helpers\ValidationHelpers.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BudgetManager.Common\BudgetManager.Common.csproj">
+      <Project>{9369f700-90e2-41ee-8d13-e116b97f6265}</Project>
+      <Name>BudgetManager.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BudgetManager.Data\BudgetManager.Data.csproj">
+      <Project>{d30da771-23c2-436e-9de2-ec98ac2f54d2}</Project>
+      <Name>BudgetManager.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BudgetManager.Enums\BudgetManager.Enums.csproj">
+      <Project>{9EDE0F26-E12B-4B8F-B73F-0E6933F3A643}</Project>
+      <Name>BudgetManager.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BudgetManager.Extentions\BudgetManager.Extentions.csproj">
+      <Project>{06B44016-7674-4254-9659-3A672A6DF7D0}</Project>
+      <Name>BudgetManager.Extentions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BudgetManager.Interfaces\BudgetManager.Interfaces.csproj">
+      <Project>{477F7CA8-187B-408B-9C9D-81319E414545}</Project>
+      <Name>BudgetManager.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BudgetManager.Models\BudgetManager.Models.csproj">
+      <Project>{460cca59-84af-46ea-abb8-a1562e716bbc}</Project>
+      <Name>BudgetManager.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

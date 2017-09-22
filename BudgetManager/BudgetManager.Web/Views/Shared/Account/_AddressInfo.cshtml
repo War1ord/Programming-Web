@@ -1,0 +1,15 @@
+﻿@using System.Linq.Expressions
+@using BudgetManager.Models.ComplexTypes
+@model AddressInfo
+
+@helper EditorField(Expression<Func<AddressInfo, string>> expression)
+{
+    <div class="inline">
+        <div class="editor-label">@Html.LabelFor(expression)</div>
+        <div class="editor-field">@Html.EditorFor(expression) @Html.ValidationMessageFor(expression)</div>
+    </div>
+}
+@EditorField(model => model.AddressLine)
+@EditorField(model => model.City)
+@EditorField(model => model.Suburb)
+@EditorField(model => model.AreaCode)

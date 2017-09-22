@@ -1,0 +1,30 @@
+﻿@using System.Linq.Expressions
+@using BudgetManager.Models.User
+@using BudgetManager.Web.Enums
+@model User
+@helper Display(Expression<Func<User, string>> expression)
+{
+	<div class="inline">
+		<div class="display-label">@Html.DisplayNameFor(expression)</div>
+		<div class="display-field">@Html.DisplayFor(expression)</div>
+	</div>
+}
+@helper Display(Expression<Func<User, DateTime>> expression)
+{
+	<div class="inline">
+		<div class="display-label">@Html.DisplayNameFor(expression)</div>
+		<div class="display-field">@Html.DisplayFor(expression)</div>
+	</div>
+}
+<h3>Are you sure you want to delete this User?</h3>
+@Display(model => model.Email)
+@Display(model => model.Email)
+@Display(model => model.Created)
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	<p>
+		<button type="submit" name="action" value="@AccountActionEnum.AccountDelete">Delete</button>
+		<button type="submit" name="action" value="@AccountActionEnum.Cancel">Cancel</button>
+	</p>
+}

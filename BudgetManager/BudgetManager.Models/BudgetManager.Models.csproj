@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{460CCA59-84AF-46EA-ABB8-A1562E716BBC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BudgetManager.Models</RootNamespace>
+    <AssemblyName>BudgetManager.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.95\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\UserModelBase.cs" />
+    <Compile Include="User\BankTransactionRule.cs" />
+    <Compile Include="Base\Result.cs" />
+    <Compile Include="Base\ResultType.cs" />
+    <Compile Include="User\BudgetRowItem.cs" />
+    <Compile Include="User\BudgetTemplateItemRuleLink.cs" />
+    <Compile Include="ComplexTypes\ContactDetail.cs" />
+    <Compile Include="ComplexTypes\AddressInfo.cs" />
+    <Compile Include="Static\Bank.cs" />
+    <Compile Include="User\BankAccount.cs" />
+    <Compile Include="User\BankTransactionGroup.cs" />
+    <Compile Include="Filters\IndexAttribute.cs" />
+    <Compile Include="Base\IdModelBase.cs" />
+    <Compile Include="Error.cs" />
+    <Compile Include="User\BudgetTemplateItem.cs" />
+    <Compile Include="ComplexTypes\Person.cs" />
+    <Compile Include="User\BankTransaction.cs" />
+    <Compile Include="User\BudgetTypeDate.cs" />
+    <Compile Include="User\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BudgetManager.Common\BudgetManager.Common.csproj">
+      <Project>{9369f700-90e2-41ee-8d13-e116b97f6265}</Project>
+      <Name>BudgetManager.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BudgetManager.Enums\BudgetManager.Enums.csproj">
+      <Project>{9ede0f26-e12b-4b8f-b73f-0e6933f3a643}</Project>
+      <Name>BudgetManager.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BudgetManager.Extentions\BudgetManager.Extentions.csproj">
+      <Project>{06b44016-7674-4254-9659-3a672a6df7d0}</Project>
+      <Name>BudgetManager.Extentions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BudgetManager.Interfaces\BudgetManager.Interfaces.csproj">
+      <Project>{477f7ca8-187b-408b-9c9d-81319e414545}</Project>
+      <Name>BudgetManager.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

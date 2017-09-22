@@ -1,0 +1,14 @@
+﻿@using BudgetManager.Common.Messages
+@using BudgetManager.Web.Enums
+@if (ViewBag.Deleted != null && !ViewBag.Deleted)
+{
+	<p class="validation-summary-errors">@ErrorMessages.ErrorsNotDeleted</p>
+}
+<p>Are you sure you want to clear all the errors?</p>
+@using (Html.BeginForm())
+{
+	<p>
+		<button type="submit" name="action" value="@ErrorActionEnum.ClearErrors" >Yes</button>
+		<button type="submit" name="action" value="@ErrorActionEnum.Cancel" >No</button>
+	</p>
+}

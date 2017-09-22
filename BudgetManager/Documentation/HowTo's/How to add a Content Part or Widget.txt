@@ -1,0 +1,186 @@
+How to add a Content Part or Widget
+NOTE: Creation of a Widget is the same as a Content Part except for a piece of code that a Widget has extra. 
+
+__________________________________________________________________________________________________________________
+1. Write the Map part. Add class under "Models" folder of the project. Build project after making sure it compiles successfully.
+eg. Map.cs
+using System.ComponentModel.DataAnnotations;
+using Orchard.ContentManagement;
+using Orchard.ContentManagement.Records;
+
+namespace Maps.Models {
+    public class MapRecord : ContentPartRecord {
+        public virtual double Latitude { get; set; }
+        public virtual double Longitude { get; set; }
+    }
+
+    public class MapPart : ContentPart<MapRecord> {
+        [Required]
+        public double Latitude
+        {
+            get { return Record.Latitude; }
+            set { Record.Latitude = value; }
+        }
+
+        [Required]
+        public double Longitude
+        {
+            get { return Record.Longitude; }
+            set { Record.Longitude = value; }
+        }
+    }
+}
+
+__________________________________________________________________________________________________________________
+2. Create a data migration for our Maps module.
+	- open Orchard.exe
+	- execute: codegen datamigration Maps
+		>File created: Migrations.cs in project root folder.
+	- Add the AlterPartDefinition lines to the migration in order to make the part attachable to any content type. 
+		ContentDefinitionManager.AlterPartDefinition(typeof(MapPart).Name, cfg => cfg.Attachable());
+
+__________________________________________________________________________________________________________________
+3. Add the handler for the Map part. 
+	- Add Folder Handlers
+	- Add Class MapHandler.cs
+eg. MapHandler.cs
+ 
+namespace Maps.Handlers {
+    public class MapHandler : ContentHandler {
+        public MapHandler(IRepository<MapRecord> repository) {
+            Filters.Add(StorageFilter.For(repository));
+        }
+    }
+}
+
+__________________________________________________________________________________________________________________
+4. Add a driver for our Map part. 
+	INFO: A driver in Orchard is a class that can define associations of shapes to display for each context in which 
+			the Map part can render. 
+	- Add Folder Drivers 
+	- Add MapDriver.cs class
+eg. MapDriver.cs
+using Maps.Models;
+using Orchard.ContentManagement;
+using Orchard.ContentManagement.Drivers;
+
+namespace Maps.Drivers {
+    public class MapDriver : ContentPartDriver<MapPart> {
+        protected override DriverResult Display(MapPart part, string displayType, dynamic shapeHelper) {
+
+            return ContentShape("Parts_Map", () => shapeHelper.Parts_Map(
+                Longitude: part.Longitude,
+                Latitude: part.Latitude));
+        }
+
+        //GET
+        protected override DriverResult Editor(MapPart part, dynamic shapeHelper) {
+
+            return ContentShape("Parts_Map_Edit",
+                () => shapeHelper.EditorTemplate(
+                    TemplateName: "Parts/Map",
+                    Model: part,
+                    Prefix: Prefix));
+        }
+        //POST
+        protected override DriverResult Editor(MapPart part, IUpdateModel updater, dynamic shapeHelper) {
+
+            updater.TryUpdateModel(part, Prefix, null, null);
+            return Editor(part, shapeHelper);
+        }
+    }
+}
+
+__________________________________________________________________________________________________________________
+5. Add the display and editor views
+	- First add "Parts" and "EditorTemplates/Parts" folders to the "Views" folder.
+	- Add Map.cshtml files to both folders
+eg. /Views/EditorTemplates/Parts/Map.cshtml
+@model Maps.Models.MapPart
+
+<fieldset>
+  <legend>Map Fields</legend>
+
+  <div class="editor-label">
+    @Html.LabelFor(model => model.Latitude)
+  </div>
+  <div class="editor-field">
+    @Html.TextBoxFor(model => model.Latitude)
+    @Html.ValidationMessageFor(model => model.Latitude)
+  </div>
+
+  <div class="editor-label">
+    @Html.LabelFor(model => model.Longitude)
+  </div>
+  <div class="editor-field">
+    @Html.TextBoxFor(model => model.Longitude)
+    @Html.ValidationMessageFor(model => model.Longitude)
+  </div>
+
+</fieldset>
+eg. /Views/Parts/Map.cshtml
+<img alt="Location" border="1" src="http://maps.google.com/maps/api/staticmap? 
+     &zoom=14
+     &size=256x256
+     &maptype=roadmap
+     &markers=color:blue|@Model.Latitude,@Model.Longitude
+     &sensor=false" />
+
+__________________________________________________________________________________________________________________
+6. Add a placement.info file into the root project folder.
+	INFO: This is saying that the Parts_Map shape (which is rendered by Views/Parts/Maps.cshtml unless overridden 
+			in the current theme) should render in the "Content" zone if available, in tenth position. 
+			It also positions the editor shape/template in the "Primary" zone in second position.
+eg. placement.info
+<Placement>
+    <Place Parts_Map="Content:10"/>
+    <Place Parts_Map_Edit="Content:7.5"/>
+</Placement>
+
+__________________________________________________________________________________________________________________
+7. Turning a Content Part into a Widget
+INFO: To turn a content part into a widget, you must update the database with your widget's type definition. 
+		You do this by adding an UpdateFrom{version} method to the part's Migrations.cs file.
+	- Add Method UpateFrom1 to Migrations.cs 
+eg. Migrations.cs 
+using System.Data;
+using Maps.Models;
+using Orchard.ContentManagement.MetaData;
+using Orchard.Core.Contents.Extensions;
+using Orchard.Data.Migration;
+
+namespace Maps
+{
+    public class Migrations : DataMigrationImpl
+    {
+        public int Create()
+        {
+            // Creating table MapRecord
+            SchemaBuilder.CreateTable("MapRecord", table => table
+                .ContentPartRecord()
+                .Column("Latitude", DbType.Single)
+                .Column("Longitude", DbType.Single)
+            );
+
+            ContentDefinitionManager.AlterPartDefinition(typeof(MapPart).Name, cfg => cfg
+                .Attachable());
+
+            return 1;
+        }
+
+        public int UpdateFrom1()
+        {
+            // Create a new widget content type with our map
+            ContentDefinitionManager.AlterTypeDefinition("MapWidget", cfg => cfg
+                .WithPart("MapPart")
+                .WithPart("WidgetPart")
+                .WithPart("CommonPart")
+                .WithSetting("Stereotype", "Widget"));
+
+            return 2;
+        }
+    }
+}
+
+__________________________________________________________________________________________________________________
+8. Displaying the Widget

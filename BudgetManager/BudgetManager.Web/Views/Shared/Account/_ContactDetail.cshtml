@@ -1,0 +1,15 @@
+﻿@using System.Linq.Expressions
+@using BudgetManager.Models.ComplexTypes
+@model ContactDetail
+
+@helper EditorField(Expression<Func<ContactDetail, string>> expression)
+{
+    <div class="inline">
+        <div class="editor-label">@Html.LabelFor(expression)</div>
+        <div class="editor-field">@Html.EditorFor(expression) @Html.ValidationMessageFor(expression)</div>
+    </div>
+}
+@EditorField(model => model.MobileTelephoneNumber)
+@EditorField(model => model.HomeTelephoneNumber)
+@EditorField(model => model.WorkTelephoneNumber)
+@EditorField(model => model.FaxNumber)

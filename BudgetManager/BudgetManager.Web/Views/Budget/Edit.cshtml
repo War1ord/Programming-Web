@@ -1,0 +1,20 @@
+﻿@using BudgetManager.Extentions.Mvc
+@using BudgetManager.Web.Enums
+@model BudgetManager.Web.ViewModels.Budget.BudgetAddViewModel
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary()
+	@Html.PartialFor(model => model.Result, "_ResultMessages")
+
+	<div id="hiddenFields">
+		
+	</div>
+	
+	<div>Select the type of Budget to add.</div>
+	<div>@Html.EnumDropDownListFor(model => model.BudgetType, "Select type of Budget...")</div>
+	<div>
+		<button type="submit" name="action" value="@BudgetActionEnum.Save">Save</button>
+		<button type="submit" name="action" value="@BudgetActionEnum.Cancel">Cancel</button>
+	</div>
+}

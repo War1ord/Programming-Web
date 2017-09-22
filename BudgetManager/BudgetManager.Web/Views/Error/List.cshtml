@@ -1,0 +1,42 @@
+﻿@using Antlr.Runtime
+@using BudgetManager.Models
+@using BudgetManager.Web.Enums
+@model IEnumerable<Error>
+@if (Model.Any())
+{
+	<p>
+		<button type="submit" name="action" value="@ErrorActionEnum.ClearErrors">Clear</button>
+	</p>
+	<table>
+		<tr>
+			<th>@Html.DisplayNameFor(model => model.HostName)</th>
+			<th>@Html.DisplayNameFor(model => model.Version)</th>
+			<th>@Html.DisplayNameFor(model => model.ErrorDate)</th>
+			<th>@Html.DisplayNameFor(model => model.ErrorMessage)</th>
+			<th>@Html.DisplayNameFor(model => model.ErrorDetail)</th>
+			<th>@Html.DisplayNameFor(model => model.ClassName)</th>
+			<th>@Html.DisplayNameFor(model => model.FunctionName)</th>
+			<th>@Html.DisplayNameFor(model => model.ErrorXml)</th>
+			<th>@Html.DisplayNameFor(model => model.Created)</th>
+		</tr>
+
+		@foreach (Error item in Model)
+		{
+			<tr>
+				<td>@Html.DisplayFor(model => item.HostName)</td>
+				<td>@Html.DisplayFor(model => item.Version)</td>
+				<td>@Html.DisplayFor(model => item.ErrorDate)</td>
+				<td>@Html.DisplayFor(model => item.ErrorMessage)</td>
+				<td>@Html.DisplayFor(model => item.ErrorDetail)</td>
+				<td>@Html.DisplayFor(model => item.ClassName)</td>
+				<td>@Html.DisplayFor(model => item.FunctionName)</td>
+				<td>@Html.DisplayFor(model => item.ErrorXml)</td>
+				<td>@Html.DisplayFor(model => item.Created)</td>
+			</tr>
+		}
+	</table>
+}
+else
+{
+	<p>No Errors...</p>
+}

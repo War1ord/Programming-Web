@@ -1,0 +1,30 @@
+﻿@using BudgetManager.Extentions.Mvc
+@using BudgetManager.Web.Enums
+@model BudgetManager.Web.ViewModels.Budget.BudgetTemplateItemViewModel
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary()
+	@Html.PartialFor(model => model.Result, "_ResultMessages")
+
+	<div id="hiddenFields">
+		@Html.HiddenFor(model => model.BudgetTemplateItem.Id)
+		@Html.HiddenFor(model => model.BudgetTemplateItem.UserId)
+	</div>
+	
+	<div>
+		<div>@Html.LabelFor(model => model.BudgetTemplateItem.Name)</div>
+		<div>@Html.TextBoxFor(model => model.BudgetTemplateItem.Name)</div>
+		<div>@Html.ValidationMessageFor(model => model.BudgetTemplateItem.Name)</div>
+	</div>
+	<div>
+		<div>@Html.LabelFor(model => model.BudgetTemplateItem.BudgetItemType)</div>
+		<div>@Html.EnumDropDownListFor(model => model.BudgetTemplateItem.BudgetItemType)</div>
+		<div>@Html.ValidationMessageFor(model => model.BudgetTemplateItem.BudgetItemType)</div>
+	</div>
+	<div>
+		<button type="submit" name="action" value="@BudgetActionEnum.AddTemplate">Save</button>
+		<button type="submit" name="action" value="@BudgetActionEnum.Cancel">Cancel</button>
+	</div>
+}

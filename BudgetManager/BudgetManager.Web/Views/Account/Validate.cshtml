@@ -1,0 +1,29 @@
+﻿@using BudgetManager.Web.Enums
+@model BudgetManager.Web.ViewModels.ValidationViewModel
+<h2>Validate</h2>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary()
+
+	<div class="inline">
+		<div class="editor-label">@Html.LabelFor(model => model.OneTimePin)</div>
+		<div class="editor-field">@Html.EditorFor(model => model.OneTimePin) @Html.ValidationMessageFor(model => model.OneTimePin)</div>
+	</div>
+	<div class="inline">
+		<div class="editor-label">@Html.LabelFor(model => model.Email)</div>
+		<div class="editor-field">@Html.EditorFor(model => model.Email) @Html.ValidationMessageFor(model => model.Email)</div>
+	</div>
+	<div class="inline">
+		<div class="editor-label">@Html.LabelFor(model => model.Password)</div>
+		<div class="editor-field">@Html.EditorFor(model => model.Password) @Html.ValidationMessageFor(model => model.Password)</div>
+	</div>
+	<div class="inline">
+		<div class="editor-label">@Html.LabelFor(model => model.ConfirmPassword)</div>
+		<div class="editor-field">@Html.EditorFor(model => model.ConfirmPassword) @Html.ValidationMessageFor(model => model.ConfirmPassword)</div>
+	</div>
+	<p>
+		<button type="submit" name="action" value="@AccountActionEnum.Validate" >Validate</button>
+		<button type="submit" name="action" value="@AccountActionEnum.Cancel" >Cancel</button>
+	</p>
+}

@@ -1,0 +1,22 @@
+How to Create a simple Widget.
+
+__________________________________________________________________________________________________________________
+1. Add new Content Type
+	- In the admin, go to Content / Content Types and click “Create new type”
+	- Name your Content Type, eg. with your Widget's Name.
+	- Select\Tick "widget" and "identity" parts.
+	- Click Save
+
+__________________________________________________________________________________________________________________
+2. On the Edit Content Type page.
+	- Uncheck creatable and draftable.
+	- Type "Widget" in the stereotype textbox, NOTE: text is case sensitive.
+	- Click Save
+
+__________________________________________________________________________________________________________________
+3. Add View file to Theme project. 
+	- Create a view file under View folder
+	- Naming "Widget-{Content Type Id}.cshtml "
+		NOTE: Content Type Id is the text\id created when you entered your Content Type Name.
+			Normally this would be same as your Content Type Name, but with no spaces.
+

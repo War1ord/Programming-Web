@@ -1,0 +1,33 @@
+﻿@using System.Linq.Expressions
+@using BudgetManager.Extentions.Mvc
+@using BudgetManager.Models.User
+@using BudgetManager.Web.Enums
+@model User
+<h2>Account Edit</h2>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary()
+	<div>
+		@Html.HiddenFor(model => model.Id)
+		@Html.HiddenFor(model => model.Created)
+		@Html.HiddenFor(model => model.IsAdmin)
+		@Html.HiddenFor(model => model.IsAuthenticated)
+		@Html.HiddenFor(model => model.IsDeleted)
+		@Html.HiddenFor(model => model.IsLocked)
+		@Html.HiddenFor(model => model.IsValidated)
+	</div>
+	<div class="inline">
+		<div class="editor-label">@Html.LabelFor(model => model.Email)</div>
+		<div class="editor-field">@Html.EditorFor(model => model.Email) @Html.ValidationMessageFor(model => model.Email)</div>
+	</div>
+	<div class="inline">
+		<div class="editor-label">@Html.LabelFor(model => model.Password)</div>
+		<div class="editor-field">@Html.EditorFor(model => model.Password) @Html.ValidationMessageFor(model => model.Password)</div>
+	</div>
+	@Html.PartialFor(model => model.Person, "Account/_Person")
+	<p>
+		<button type="submit" name="action" value="@AccountActionEnum.AccountSave">Save</button>
+		<button type="submit" name="action" value="@AccountActionEnum.Cancel">Cancel</button>
+	</p>
+}

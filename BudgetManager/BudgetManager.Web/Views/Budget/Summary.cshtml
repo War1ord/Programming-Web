@@ -1,0 +1,96 @@
+﻿@using BudgetManager.Extentions.Mvc
+@using BudgetManager.Web.Enums
+@model  BudgetManager.Web.ViewModels.Budget.BudgetViewModel
+@Styles.Render("~/Content/datepicker")
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary()
+	@Html.PartialFor(model => model.Result, "_ResultMessages")
+
+	if (Model != null && Model.BudgetTemplateItems != null && Model.BudgetTemplateItems.Any())
+	{
+		<div>
+			<div>@Html.LabelFor(model => model.StartDate)</div>
+			<div>
+				@Html.TextBoxFor(model => model.StartDate, "{0:yyyy-MM-dd}",
+					new
+					{
+						@class = "form-control datepicker",
+						@placeholder = "Select a startdate.",
+						@style = "width:90px;cursor:cell;",
+						@readonly = "true",
+					})
+			</div>
+		</div>
+		<div>
+			<div>@Html.LabelFor(model => model.EndDate)</div>
+			<div>
+				@Html.TextBoxFor(model => model.EndDate, "{0:yyyy-MM-dd}",
+					new
+					{
+						@class = "form-control datepicker",
+						@placeholder = "Select an enddate.",
+						@style = "width:90px;cursor:cell;",
+						@readonly = "true",
+					})
+			</div>
+		</div>
+		<div id="buttons">
+			<button type="submit" name="action" value="@BudgetActionEnum.Refresh">Refresh</button>
+		</div>
+		<table>
+			<tr>
+				<th></th>
+				@for (int d = 0; d < Model.BudgetTypeDates.Count; d++)
+				{
+					<th>@string.Format("{0}({1})", Model.BudgetTypeDates[d].Created.ToShortDateString(), Model.BudgetTypeDates[d].BudgetType)</th>
+				}
+			</tr>
+			@for (int t = 0; t < Model.BudgetTemplateItems.Count; t++)
+			{
+				<tr>
+					<th>
+						@Html.DisplayFor(model => model.BudgetTemplateItems[t].Name)
+					</th>
+					@for (int r = 0; r < Model.BudgetTemplateItems[t].BudgetRowItems.Count; r++)
+					{
+						<td>
+							@Html.DisplayFor(model => model.BudgetTemplateItems[t].BudgetRowItems[r].AmountBudget)
+						</td>
+					}
+				</tr>
+			}
+		</table>
+	}
+	else
+	{
+		<p>There is no template items to display you budget with.</p>
+	}
+
+	<div id="actions">
+		<button type="submit" name="action" value="@BudgetActionEnum.AddTemplate">Add a row template</button>
+		@if (Model != null && Model.BudgetTemplateItems != null && Model.BudgetTemplateItems.Any())
+		{
+			<button type="submit" name="action" value="@BudgetActionEnum.AddMonth">Add a month</button>
+		}
+		else
+		{
+			<button type="submit" name="action" value="@BudgetActionEnum.AddMonth" disabled>Add a month</button>
+		}
+	</div>
+}
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/bootstrap-datepicker")
+
+	<script type="text/javascript">
+		(function() {
+			//http://stackoverflow.com/questions/21104633/how-to-add-date-picker-bootstrap-3-on-mvc-5-project-using-the-razor-engine
+			$('.datepicker').datepicker({
+				format: "yyyy-mm-dd",
+			}); //Initialise any date pickers
+		})();
+	</script>
+
+}

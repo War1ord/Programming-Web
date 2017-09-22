@@ -1,0 +1,27 @@
+﻿@using BudgetManager.Extentions.Mvc
+@using BudgetManager.Web.Enums
+@model BudgetManager.Web.ViewModels.RegistrationViewModel
+<h2>Register</h2>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary()
+
+	<div class="inline">
+		<div class="editor-label">@Html.LabelFor(model => model.User.Email)</div>
+		<div class="editor-field">@Html.EditorFor(model => model.User.Email) @Html.ValidationMessageFor(model => model.User.Email)</div>
+	</div>
+	<div class="inline">
+		<div class="editor-label">@Html.LabelFor(model => model.Password)</div>
+		<div class="editor-field">@Html.EditorFor(model => model.Password) @Html.ValidationMessageFor(model => model.Password)</div>
+	</div>
+	<div class="inline">
+		<div class="editor-label">@Html.LabelFor(model => model.ConfirmPassword)</div>
+		<div class="editor-field">@Html.EditorFor(model => model.ConfirmPassword) @Html.ValidationMessageFor(model => model.ConfirmPassword)</div>
+	</div>
+	@Html.PartialFor(model => model.User.Person, "Account/_Person")
+	<p>
+		<button type="submit" name="action" value="@AccountActionEnum.Register">Register</button>
+		<button type="submit" name="action" value="@AccountActionEnum.Cancel">Cancel</button>
+	</p>
+}

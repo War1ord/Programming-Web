@@ -1,0 +1,19 @@
+﻿@using BudgetManager.Models.Base
+@model BudgetManager.Models.Base.Result
+
+@if (Model != null && Model.Type == ResultType.Error)
+{
+	<div class="validation-summary-errors">@Html.DisplayFor(model => model.Message)</div>
+}
+@if (Model != null && Model.Type == ResultType.Information)
+{
+	<div class="message-Information">@Html.DisplayFor(model => model.Message)</div>
+}
+@if (Model != null && Model.Type == ResultType.Success)
+{
+	<div class="message-Success">@Html.DisplayFor(model => model.Message)</div>
+}
+@if (Model != null && Model.Type == ResultType.Warning)
+{
+	<div class="message-Warning">@Html.DisplayFor(model => model.Message)</div>
+}

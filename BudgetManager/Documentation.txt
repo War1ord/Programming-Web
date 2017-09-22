@@ -1,0 +1,11 @@
+connectionString : <add name="DefaultConnection" providerName="System.Data.SqlClient" connectionString="Data Source=.\SQLEXPRESS;Database=BudgetManager_01_001_Local;Integrated Security=True;" />
+
+- Pre build commands : 
+"$(SolutionDir)\jsmin.exe" < "$(ProjectDir)Scripts\BudgetManager-1.0.0.js" > "$(ProjectDir)Scripts\BudgetManager-1.0.0.min.js"
+"$(SolutionDir)\BudgetManager.SqlEnums.exe"
+exit 0
+
+- Post build commands : (removed because of UI project changed to Express and with Express there is no need to clear IIS)
+%windir%\system32\inetsrv\appcmd.exe recycle apppool "BudgetManager"
+exit 0
+
