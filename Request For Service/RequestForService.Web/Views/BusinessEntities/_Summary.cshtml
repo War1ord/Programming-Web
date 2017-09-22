@@ -1,0 +1,10 @@
+﻿@model RequestForService.Models.BusinessEntities.BusinessEntity
+@if (Model != null)
+{
+	<li class="list-item">
+		<a href="@(Url.Action("Update", new {id = Model.Id}))" class="btn btn-info">
+			@string.Format("{0}", Model.Name ?? string.Empty)
+		</a>
+		<a href="@(Url.Action("Index", new {id = Model.Id}))" class="btn btn-info">View Children</a>
+	</li>
+}

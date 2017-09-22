@@ -1,0 +1,33 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.Account.LoginViewModel
+@{ViewBag.Title = "Login";}
+<header><h4>@ViewBag.Title</h4></header>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@*@Html.ValidationSummary()*@
+	@*@Html.PartialFor(m => m.Result, "_ResultMessage")*@
+	
+	<div class="form-horizontal" style="padding: 5px">
+		<div class="form-group col-md-12 row">
+			@Html.LabelFor(model => model.Email, new { @class = "control-label col-md-1" })
+			<div class="col-md-2">
+				@Html.TextBoxFor(model => model.Email, new{@class="width-5"})
+				@Html.ValidationMessageFor(model => model.Email)
+			</div>
+		</div>
+
+		<div class="form-group col-md-12 row ">
+			@Html.LabelFor(model => model.Password, new { @class = "control-label col-md-1" })
+			<div class="col-md-2">
+				@Html.PasswordFor(model => model.Password, new{@class="width-5"})
+				@Html.ValidationMessageFor(model => model.Password)
+			</div>
+		</div>
+
+		<div class="form-group col-md-12 row">
+		    <input type="submit" value="Login" class="btn btn-default " />
+		    <a href="/Register" class="btn btn-default ">Register</a>
+		</div>
+	</div>
+}

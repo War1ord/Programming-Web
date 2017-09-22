@@ -1,0 +1,24 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.Errors.ErrorsListViewModel
+@{ ViewBag.Title = "Error Logs";}
+<p>
+	<h2>
+		@ViewBag.Title <a href="@Url.Action("DeleteAll")" class="btn btn-danger">Delete All</a>
+	</h2>
+</p>
+@if (Model != null)
+{
+	if (Model.List != null && Model.List.Count > 0)
+	{
+		<ul class="item-list-custom1">
+			@for (int i = 0; i < Model.List.Count; i++)
+			{
+				@Html.PartialFor(model => model.List[i], "_Summary")
+			}
+		</ul>
+	}
+	else
+	{
+		<p>Yeah, There is no errors!!!</p>
+	}
+}

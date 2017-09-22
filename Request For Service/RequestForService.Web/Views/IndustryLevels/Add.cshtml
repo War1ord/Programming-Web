@@ -1,0 +1,19 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.IndustryLevels.IndustryLevelItemViewModel
+@{ ViewBag.Title = "Add an Industry Level";}
+<p>
+	<h2>@ViewBag.Title</h2>
+</p>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@*@Html.ValidationSummary()*@
+	@*@Html.PartialFor(model => model.Result, "_ResultMessage")*@
+	@Html.PartialFor(model => model.IndustryLevel, "_Edit")
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+			<input type="submit" value="Add" class="btn btn-primary" />
+		</div>
+	</div>
+}

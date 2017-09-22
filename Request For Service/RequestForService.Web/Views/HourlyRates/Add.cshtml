@@ -1,0 +1,17 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.HourlyRates.HourlyRateItemViewModel
+@{ ViewBag.Title = "Add a Hourly Rate";}
+<p><h2>@ViewBag.Title</h2></p>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@*@Html.ValidationSummary()*@
+	@*@Html.PartialFor(model => model.Result, "_ResultMessage")*@
+	@Html.PartialFor(model => model.Item, "_Edit")
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<a href="@Url.Action("Index")" class="btn btn-default">Cancel</a>
+			<input type="submit" value="Save" class="btn btn-primary" />
+		</div>
+	</div>
+}

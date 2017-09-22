@@ -1,0 +1,48 @@
+﻿@model RequestForService.Business.Models.Result
+@{
+	var preCondition = Model != null && Model.IsMessageSet;
+	string resultMessageClass = string.Empty;
+	if (preCondition)
+	{
+		switch (Model.Type)
+		{
+            case RequestForService.Business.Models.ResultType.Information:
+				{
+					resultMessageClass = "text-info";
+					break;
+				}
+            case RequestForService.Business.Models.ResultType.Success:
+				{
+					resultMessageClass = "label-success";
+					break;
+				}
+            case RequestForService.Business.Models.ResultType.Warning:
+				{
+					resultMessageClass = "text-warning";
+					break;
+				}
+            case RequestForService.Business.Models.ResultType.Error:
+				{
+					resultMessageClass = "validation-summary-errors"; // field-validation-error
+					break;
+				}
+            case RequestForService.Business.Models.ResultType.CriticalError:
+				{
+					resultMessageClass = "validation-summary-errors";
+					break;
+				}
+		}
+	}
+}
+@if (preCondition)
+{
+<div class="@resultMessageClass " id="resultmessage">
+    <dl class="dl-horizontal">
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+    </dl>
+</div>
+}

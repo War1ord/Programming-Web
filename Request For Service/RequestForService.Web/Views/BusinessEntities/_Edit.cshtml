@@ -1,0 +1,31 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Models.BusinessEntities.BusinessEntity
+@{
+	List<RequestForService.Models.BusinessEntities.IndustryLevel> industryLevelList
+		= (ViewBag.IndustryLevelList as List<RequestForService.Models.BusinessEntities.IndustryLevel>)
+		  ?? (ViewBag.IndustryLevelList = new List<RequestForService.Models.BusinessEntities.IndustryLevel>());
+}
+@Html.HiddenFor(model => model.ParentEntityId)
+<div class="form-group">
+	@Html.LabelFor(model => model.IndustryLevelId, new { @class = "control-label col-md-2" })
+	<div class="col-md-12">
+		@Html.DropDownListFor(model => model.IndustryLevelId,
+			industryLevelList.ToSelectList(i => i.Id, i => i.Name, Model != null ? Model.IndustryLevelId : Guid.Empty),
+			"Please select...")
+		@Html.ValidationMessageFor(model => model.IndustryLevelId)
+	</div>
+</div>
+<div class="form-group">
+	@Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+	<div class="col-md-12">
+		@Html.TextBoxFor(model => model.Name)
+		@Html.ValidationMessageFor(model => model.Name)
+	</div>
+</div>
+<div class="form-group">
+	@Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+	<div class="col-md-12">
+		@Html.TextAreaFor(model => model.Description)
+		@Html.ValidationMessageFor(model => model.Description)
+	</div>
+</div>

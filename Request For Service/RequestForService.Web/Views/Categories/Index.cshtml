@@ -1,0 +1,33 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.Categories.CategoriesListViewModel
+@{ ViewBag.Title = "Categories"; }
+<p>
+	<h2>
+		@ViewBag.Title 
+		<a href="@Url.Action("Add")" class="btn btn-default">Add</a>
+	</h2>
+</p>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@*@Html.ValidationSummary()*@
+	@*@Html.PartialFor(model => model.Result, "_ResultMessage")*@
+	if (Model != null)
+	{
+		if (Model.List != null && Model.List.Any())
+		{
+			<ul class="item-list">
+				@foreach (var category in Model.List)
+				{
+					<li class="list-item">
+						@Html.ActionLink(category.Name, "Update", new { id = category.Id }, new{ @class="btn btn-info"})
+					</li>
+				}
+			</ul>
+		}
+		else
+		{
+			<p>There is no categories.</p>
+		}
+	}
+}

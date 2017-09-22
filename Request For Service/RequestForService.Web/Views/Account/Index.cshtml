@@ -1,0 +1,115 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.Account.AccountViewModel
+@{ ViewBag.Title = "Account Update"; }
+<div class="navbar-collapse collapse">
+	<header><h4>@ViewBag.Title</h4></header>
+</div>
+@using (Html.BeginForm())
+{
+	<div class="form-horizontal">
+		@Html.AntiForgeryToken()
+		@*@Html.ValidationSummary()*@
+		@Html.HiddenFor(model => model.User.Id)
+		<div class="col-md-offset-2 col-md-10">
+			<h4>
+				<span>
+					@Html.DisplayFor(model => model.User.Person.FirstName)
+					@Html.DisplayFor(model => model.User.Person.LastName)
+					@Html.DisplayFor(model => model.User.EmailAddress)
+				</span>
+			</h4>
+		</div>
+		<div class="col-md-offset-2 col-md-10">
+			<h5>Person Details</h5>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.User.Person.Title, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EnumDropDownListFor(model => model.User.Person.Title, "None")
+				@Html.ValidationMessageFor(model => model.User.Person.Title)
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.User.Person.FirstName, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.User.Person.FirstName)
+				<input class="inline hide" id="btnPersonFirstNameUpdate" type="button" value="Update" />
+				@Html.ValidationMessageFor(model => model.User.Person.FirstName)
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.User.Person.MiddleName, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.User.Person.MiddleName)
+				<input class="inline hide" id="btnPersonMiddleNameUpdate" type="button" value="Update" />
+				@Html.ValidationMessageFor(model => model.User.Person.MiddleName)
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.User.Person.LastName, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.User.Person.LastName)
+				<input class="inline hide" id="btnPersonLastNameUpdate" type="button" value="Update" />
+				@Html.ValidationMessageFor(model => model.User.Person.LastName)
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.User.Person.Gender, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EnumDropDownListFor(model => model.User.Person.Gender, "None")
+				@Html.ValidationMessageFor(model => model.User.Person.Gender)
+			</div>
+		</div>
+		<div class="col-md-offset-2 col-md-10">
+			<h5>Contact Details</h5>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.User.ContactDetails.Office, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.TextBoxFor(model => model.User.ContactDetails.Office)
+				<input class="inline hide" id="btnContactDetailsOfficeUpdate" type="button" value="Update" />
+				@Html.ValidationMessageFor(model => model.User.ContactDetails.Office)
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.User.ContactDetails.Mobile, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.TextBoxFor(model => model.User.ContactDetails.Mobile)
+				<input class="inline hide" id="btnContactDetailsMobileUpdate" type="button" value="Update" />
+				@Html.ValidationMessageFor(model => model.User.ContactDetails.Mobile)
+			</div>
+		</div>
+		<div class="col-md-offset-2 col-md-10">
+			<h5>Job Details</h5>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.User.JobDetails.JobTitle, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EnumDropDownListFor(model => model.User.JobDetails.JobTitle, "None")
+				@Html.ValidationMessageFor(model => model.User.JobDetails.JobTitle)
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.User.ReceiveNewsletters, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.User.ReceiveNewsletters)
+				@Html.ValidationMessageFor(model => model.User.ReceiveNewsletters)
+			</div>
+		</div>
+	</div>
+}	
+@section Scripts {
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/accountupdate")
+	<script>
+		var urlActionSaveuserpersontitle = '@Url.Action("SaveUserPersonTitle")';
+		var urlActionSaveuserpersongender = '@Url.Action("SaveUserPersonGender")';
+		var urlActionSaveuserjobdetailsjobtitle = '@Url.Action("SaveUserJobDetailsJobTitle")';
+		var urlActionSaveuserreceivenewsletters = '@Url.Action("SaveUserReceiveNewsletters")';
+		var urlActionSaveuserpersonfirstname = '@Url.Action("SaveUserPersonFirstName")';
+		var urlActionSaveuserpersonmiddlename = '@Url.Action("SaveUserPersonMiddleName")';
+		var urlActionSaveuserpersonlastname = '@Url.Action("SaveUserPersonLastName")';
+		var urlActionSaveusercontactdetailsoffice = '@Url.Action("SaveUserContactDetailsOffice")';
+		var urlActionSaveusercontactdetailsmobile = '@Url.Action("SaveUserContactDetailsMobile")';
+	</script>
+}

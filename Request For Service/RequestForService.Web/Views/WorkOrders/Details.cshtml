@@ -1,0 +1,32 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.WorkOrders.WorkOrder_Details_ViewModel
+@{
+    ViewBag.Title = "Work Order Detail";
+}
+@if (Model != null && Model.WorkOrder != null && !Model.WorkOrder.IsError)
+{
+    ViewBag.Title = string.Format("Work Order {0} - {1}", Model.WorkOrder.Entity.WorkOrderId, Model.WorkOrder.Entity.Title);
+    <header><h2>@ViewBag.Title</h2></header>
+    @*@Html.ValidationSummary()*@
+    @*@Html.PartialFor(model => model.Result, "_ResultMessage")*@
+    @Html.PartialFor(model => model.WorkOrder.Entity, "_Details")
+    <div class="strip-bordered">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.WorkOrder.Entity.Id }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Print", "Print", new { id = Model.WorkOrder.Entity.Id }, new { @class = "btn btn-default", target = "_blank" })
+    </div>
+}
+else if (Model != null && Model.WorkOrder != null && !string.IsNullOrWhiteSpace(Model.WorkOrder.Message))
+{
+    <p>@Html.DisplayFor(model => model.WorkOrder.Message)</p>
+}
+else
+{
+    <p>
+        @Global.Message.UnexpectedError
+    </p>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/workorderdetails")
+}

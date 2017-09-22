@@ -1,0 +1,6 @@
+this web app would be setup by a dev\administrator\dba.
+this web app would have so far 2 user roles ( admin and user ) so the admin's can setup the reports and users can run the reports.
+maybe the ability to schedule reports.
+this web app would be able to customize the email sent for a specific report.
+this web app would need admin setup pages for admin access only.
+this web app should be setup with a separate database login, that only allows selects and no updates or deletes.

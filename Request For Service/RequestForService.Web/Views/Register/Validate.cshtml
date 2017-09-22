@@ -1,0 +1,46 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.Account.ValidateViewModel
+@{ViewBag.Title = "Validation";}
+<p>
+	<h2>@ViewBag.Title</h2>
+</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.PartialFor(model => model.Result, "_ResultMessage")
+	
+    <div class="form-horizontal">
+        <h4>@ViewBag.Title</h4>
+        <hr />
+        @*@Html.ValidationSummary()*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Code)
+                @Html.ValidationMessageFor(model => model.Code)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Validate" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

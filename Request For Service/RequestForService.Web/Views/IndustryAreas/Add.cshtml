@@ -1,0 +1,22 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.IndustryAreas.IndustryAreaItemViewModel
+@{ ViewBag.Title = "Add an Industry Area";}
+<p>
+	<h2>@ViewBag.Title</h2>
+</p>
+@using (Html.BeginForm())
+{
+	<div class="form-horizontal">
+		<hr />
+		@Html.AntiForgeryToken()
+		@*@Html.ValidationSummary()*@
+		@*@Html.PartialFor(model => model.Result, "_ResultMessage")*@
+		@Html.PartialFor(model => model.IndustryArea, "_IndustryArea")
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				@Html.ActionLink("Cancel", "Index", null, new{@class="btn btn-default"})
+				<input type="submit" value="Add" class="btn btn-primary" />
+			</div>
+		</div>
+	</div>
+}

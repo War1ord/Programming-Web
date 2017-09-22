@@ -1,0 +1,30 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.IndustryLevels.IndustryLevelsListViewModel
+@{ ViewBag.Title = "Industry Levels";}
+<p>
+	<h2>@ViewBag.Title <a href="@Url.Action("Add")" class="btn btn-default">Add</a></h2>
+</p>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@*@Html.ValidationSummary()*@
+	@*@Html.PartialFor(model => model.Result, "_ResultMessage")*@
+	if (Model != null)
+	{
+		if (Model.List != null && Model.List.Any())
+		{
+			<ul class="item-list">
+				@for (int i = 0; i < Model.List.Count; i++)
+				{
+					<li class="list-item">
+						@Html.ActionLink(string.Format("{0}: {1}", Model.List[i].LevelOrder, Model.List[i].Name), "Update", new { id = Model.List[i].Id }, new { @class = "btn btn-info" })
+					</li>
+				}
+			</ul>
+		}
+		else
+		{
+			<p>There is no categories.</p>
+		}
+	}
+}

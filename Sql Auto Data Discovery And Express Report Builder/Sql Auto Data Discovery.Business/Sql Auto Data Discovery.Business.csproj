@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2B9270B0-9A57-4A2B-86C9-AB8D65312405}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sql_Auto_Data_Discovery.Business</RootNamespace>
+    <AssemblyName>Sql Auto Data Discovery.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SqlEnums.master">
+      <HintPath>..\SqlEnums\SqlEnums.master.dll</HintPath>
+    </Reference>
+    <Reference Include="SqlEnums.msdb">
+      <HintPath>..\SqlEnums\SqlEnums.msdb.dll</HintPath>
+    </Reference>
+    <Reference Include="SqlEnums.tempdb">
+      <HintPath>..\SqlEnums\SqlEnums.tempdb.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\CommunicationService.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Data\Connections.cs" />
+    <Compile Include="Data\Database.cs" />
+    <Compile Include="Extentions\DataContextExtentions.cs" />
+    <Compile Include="Extentions\BoolExtentions.cs" />
+    <Compile Include="Extentions\DataTableExtentions.cs" />
+    <Compile Include="Extentions\ObjectExtensions.cs" />
+    <Compile Include="Extentions\StringExtensions.cs" />
+    <Compile Include="Extentions\DataTableHelpers.cs" />
+    <Compile Include="Models\Commom\KeyValue.cs" />
+    <Compile Include="Models\Commom\Result.cs" />
+    <Compile Include="Models\SqlObjectsModel.cs" />
+    <Compile Include="Models\SqlTableStructureModel.cs" />
+    <Compile Include="Models\Sql\object_types.cs" />
+    <Compile Include="Models\TableQueryData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Data\Base\RepositoryBase.cs" />
+    <Compile Include="ViewModels\Discover\Details_Filter_ViewModel.cs" />
+    <Compile Include="ViewModels\Discover\Details_OrderBy_ViewModel.cs" />
+    <Compile Include="ViewModels\Discover\Details_ViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

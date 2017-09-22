@@ -1,0 +1,105 @@
+﻿@helper GetNavbarCssClass(string navbarLinkUrl)
+{
+	@(Request.Url != null && Request.Url.LocalPath == navbarLinkUrl ? "navbar-current" : "")
+}
+@{
+	Html.EnableClientValidation();
+	var user = ViewBag.User as RequestForService.Models.Users.User;
+}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>@ViewBag.Title</title>
+		@Styles.Render("~/Content/css")
+		@Scripts.Render("~/bundles/modernizr")
+	</head>
+	<body>
+		<div class="navbar navbar-default navbar-fixed-top" id="navbar">
+			<div class="">
+				<div class="navbar-header">
+					<div style="padding-left: 4px">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" 
+						        data-target=".navbar-collapse" id="menu">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<a class="navbar-brand pull-left" href="/WorkOrders">Request for service</a>
+				</div>
+				<div class="navbar-collapse collapse pull-left">
+					<ul class="nav navbar-nav">
+						@*<li>@Html.ActionLink("API", "Index", "Help")</li>*@
+						@*<li>@Html.ActionLink("News", "Index", "News")</li>*@
+						<li><a href="/" class="@GetNavbarCssClass("/")">Home</a></li>
+						<li><a href="/WorkOrders" class="@GetNavbarCssClass("/WorkOrders")">Work Orders</a></li>
+						@if (user != null)
+						{
+							<li>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									@if (user.BusinessEntityId != null)
+									{
+										<li class="dropdown dropdown-submenu">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown">Business Entities</a>
+											<ul class="dropdown-menu">
+												<li><a href="/BusinessEntities" class="@GetNavbarCssClass("/BusinessEntities")">Business Entities</a></li>
+												<li><a href="/IndustryAreas" class="@GetNavbarCssClass("/IndustryAreas")">Industry Areas</a></li>
+												<li><a href="/IndustryLevels" class="@GetNavbarCssClass("/IndustryLevels")">Industry Levels</a></li>
+											</ul>
+										</li>
+										<li class="dropdown dropdown-submenu">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown">Work Order</a>
+											<ul class="dropdown-menu">
+												<li><a href="/WorkOrderTypes" class="@GetNavbarCssClass("/WorkOrderTypes")">Types</a></li>
+											</ul>
+										</li>
+										<li><a href="/Categories" class="@GetNavbarCssClass("/Categories")">Categories</a></li>
+										<li><a href="/HourlyRates" class="@GetNavbarCssClass("/HourlyRates")">Hourly Rates</a></li>
+									}
+									else
+									{
+										<li><a href="/IndustryAreas" class="@GetNavbarCssClass("/IndustryAreas")">Industry Areas</a></li>
+										<li><a href="/IndustryLevels" class="@GetNavbarCssClass("/IndustryLevels")">Industry Levels</a></li>
+										<li><a href="/BusinessEntities" class="@GetNavbarCssClass("/BusinessEntities")">Business Entities</a></li>
+									}
+									<li><a href="/Error/List" class="@GetNavbarCssClass("/Error/List")">Error Logs</a></li>
+								</ul>
+							</li>
+						}
+					</ul>
+				</div>
+				<div class="navbar-collapse collapse pull-right">
+					<ul class="nav navbar-nav">
+						@if (user != null)
+						{
+							<li><a class="pull-right @GetNavbarCssClass("/Account")" href="/Account">Welcome @user.Person.FirstName</a></li>
+							<li><a class="pull-right" href="/Account/Logout">Logout</a></li>
+						}
+						else
+						{
+							<li><a href="/Account/Login" class="@GetNavbarCssClass("/Account/Login")">Login</a></li>
+						}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="container body-content">
+            @*@Html.AntiForgeryToken()*@
+			@RenderBody()
+			<footer class="navbar navbar-default navbar-fixed-bottom">
+				<div style="padding: 10px" class="pull-left">
+					<span>&copy; @DateTime.Now.Year - Request For Service</span>
+					<span>&nbsp;<a href="/News" class="btn btn-xs btn-link @GetNavbarCssClass("/News")">News</a></span>
+				</div>
+				<div style="padding: 10px; padding-right: 15px;" class="hide pull-right" id="statusBar"></div>
+			</footer>
+		</div>
+		@Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/bootstrap")
+		@Scripts.Render("~/bundles/requestforservice")
+		@RenderSection("scripts", required: false)
+	</body>
+</html>

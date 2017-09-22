@@ -1,0 +1,13 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.Errors.ErrorItemViewModel
+@{ ViewBag.Title = "Error Log";}
+<p>
+	<h2>@ViewBag.Title</h2>
+</p>
+@Html.AntiForgeryToken()
+@*@Html.ValidationSummary()*@
+@*@Html.PartialFor(model => model.Result, "_ResultMessage")*@
+@Html.PartialFor(model => model.Item, "_Details")
+<div class="strip-bordered">
+	<a href="@Url.Action("List")" class="btn btn-default">Back</a>
+</div>

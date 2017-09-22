@@ -1,0 +1,50 @@
+﻿@using Sql_Auto_Data_Discovery.Business.Extentions
+@using Sql_Auto_Data_Discovery.WebApplication.Models.Common
+@model Sql_Auto_Data_Discovery.Business.ViewModels.Discover.Details_ViewModel
+@if (Model.IsSet())
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-12 row">
+            <div>
+                Top
+                <input type="number" name="top" value="@Model.Filter.Top" style="width: 80px" />
+            </div>
+            <div>
+                Show
+                @foreach (var toShow in Model.Columns)
+                {
+                    bool ischecked = Model.Filter.ColumnsToShow.IsSet() &&
+                                     Model.Filter.ColumnsToShow.Contains(toShow);
+                    <label for="columnsToShow_@toShow">@toShow</label>
+                    <input type="checkbox" name="columnsToShow" value="@toShow" id="columnsToShow_@toShow"
+                            @(ischecked ? "checked" : "" ) />
+                }
+            </div>
+            <div>
+                Order By
+                @foreach (var orderBy in Model.Columns)
+                {
+                    bool ischecked = Model.OrderBy.ColumnsToOrderBy.IsSet() &&
+                                     Model.OrderBy.ColumnsToOrderBy.Contains(orderBy);
+                    <label for="columnsToOrderBy_@orderBy">@orderBy</label>
+                    <input type="checkbox" name="columnsToOrderBy" value="@orderBy" id="columnsToOrderBy_@orderBy"
+                           @(ischecked ? "checked" : "" ) />
+                }
+            </div>
+        </div>
+        <div class="col-md-12 row">
+            <input type="submit" name="reload" value="Reload" />
+        </div>
+        <div class="col-md-12 row">
+            <div class="col-md-12 row">
+                @Html.Partial("DataTable", Model.Data)
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>@Messages.UnexpectedError</p>
+}

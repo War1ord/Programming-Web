@@ -1,0 +1,21 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.Categories.CategoryItemViewModel
+@{ ViewBag.Title = "Update a Category";}
+<p><h2>@ViewBag.Title</h2></p>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+		@*@Html.ValidationSummary()*@
+		@*@Html.PartialFor(model => model.Result, "_ResultMessage")*@
+		@Html.PartialFor(model => model.Category, "_Edit")
+		@Html.HiddenFor(model => model.Category.Id)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+				<a href="@Url.Action("Index")" class="btn btn-default">Cancel</a>
+				<input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

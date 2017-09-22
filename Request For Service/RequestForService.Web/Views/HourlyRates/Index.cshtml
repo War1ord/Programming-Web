@@ -1,0 +1,26 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.HourlyRates.HourlyRatesListViewModel
+@{ ViewBag.Title = "Hourly Rates";}
+<p>
+	<h2>
+		@ViewBag.Title <a href="@Url.Action("Add")" class="btn btn-default">Add</a>
+	</h2>
+</p>
+@if (Model != null)
+{
+	if (Model.List != null && Model.List.Count > 0)
+	{
+		<ul class="item-list">
+			@for (int i = 0; i < Model.List.Count; i++)
+			{
+				@Html.PartialFor(model => model.List[i], "_Summary")
+			}
+		</ul>
+	}
+	else
+	{
+		<tr>
+			<td colspan="7">There is no Hourly Rates listed. Please add some?</td>
+		</tr>
+	}
+}

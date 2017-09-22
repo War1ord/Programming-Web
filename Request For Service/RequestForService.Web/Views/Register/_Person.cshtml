@@ -1,0 +1,29 @@
+﻿@model RequestForService.Models.ComplexTypes.Person
+<div class="form-horizontal">
+	<h4>Person</h4>
+	<hr />
+	@*@Html.ValidationSummary()*@
+	<div class="form-group">
+		@Html.LabelFor(model => model.FirstName, htmlAttributes: new {@class = "control-label col-md-2"}, labelText: "First Name")
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.FirstName)
+			@Html.ValidationMessageFor(model => model.FirstName)
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.MiddleName, htmlAttributes: new {@class = "control-label col-md-2"}, labelText: "Middle Name")
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.MiddleName)
+			@Html.ValidationMessageFor(model => model.MiddleName)
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.LastName, htmlAttributes: new {@class = "control-label col-md-2"}, labelText: "Last Name")
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.LastName)
+			@Html.ValidationMessageFor(model => model.LastName)
+		</div>
+	</div>
+</div>

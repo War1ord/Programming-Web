@@ -1,0 +1,23 @@
+﻿@using System.Data
+@model DataTable 
+<table class="table-bordered">
+    <thead>
+        <tr class="label-default">
+            @foreach (DataColumn col in Model.Columns) 
+            {
+            <th style="padding-right: 5px">@col.Caption</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(DataRow row in Model.Rows) 
+        {
+        <tr>
+            @foreach (var cell in row.ItemArray)
+            {
+            <td style="padding-right: 5px">@cell.ToString()</td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>

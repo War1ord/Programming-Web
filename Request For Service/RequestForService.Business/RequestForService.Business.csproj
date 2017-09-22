@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E39F0EFF-41B7-44B4-8A0B-599CAAC195B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RequestForService.Business</RootNamespace>
+    <AssemblyName>RequestForService.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.121\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Services\Admin\HourlyRatesService.cs" />
+    <Compile Include="Base\BusinessBase.cs" />
+    <Compile Include="Services\Admin\BusinessEntitiesService.cs" />
+    <Compile Include="Services\Admin\IndustryAreasService.cs" />
+    <Compile Include="Services\Admin\IndustryLevelsService.cs" />
+    <Compile Include="Base\DataManagerBase.cs" />
+    <Compile Include="Data\DataContext.cs" />
+    <Compile Include="Interfaces\IBusinessBase.cs" />
+    <Compile Include="Services\Errors\ErrorLogService.cs" />
+    <Compile Include="Services\Errors\ErrorLogsManager.cs" />
+    <Compile Include="Services\Errors\Logs.cs" />
+    <Compile Include="Extensions\DbEntityValidationResultExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Models\EntityDisplay.cs" />
+    <Compile Include="Models\Result.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Users\AccountService.cs" />
+    <Compile Include="Services\Users\RegistrationService.cs" />
+    <Compile Include="Services\Admin\CategoriesService.cs" />
+    <Compile Include="Enums\WorkOrderSortBy.cs" />
+    <Compile Include="Services\WorkOrders\WorkOrderCommentsService.cs" />
+    <Compile Include="Services\WorkOrders\WorkOrderService.cs" />
+    <Compile Include="Services\WorkOrders\WorkOrderSummaryParams.cs" />
+    <Compile Include="Services\WorkOrders\WorkOrderTypeService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <Compile Include="Services\Users\Account.User.UpdateProperties.Partial.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RequestForService.Common\RequestForService.Common.csproj">
+      <Project>{099f4985-74e6-4b7d-a7ce-f0b5f8562638}</Project>
+      <Name>RequestForService.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RequestForService.DataTypes\RequestForService.DataTypes.csproj">
+      <Project>{667a72b3-88fc-45b3-a76e-b90ade488914}</Project>
+      <Name>RequestForService.DataTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RequestForService.Data\RequestForService.Data.csproj">
+      <Project>{470b3da4-036b-42ba-9f18-285e1b5f0e59}</Project>
+      <Name>RequestForService.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RequestForService.Models\RequestForService.Models.csproj">
+      <Project>{8663ce81-c3fa-4a90-a32d-20162310a5e8}</Project>
+      <Name>RequestForService.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RequestForService.Security\RequestForService.Security.csproj">
+      <Project>{7d336744-d55f-4b98-ae33-162dbadff7f8}</Project>
+      <Name>RequestForService.Security</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

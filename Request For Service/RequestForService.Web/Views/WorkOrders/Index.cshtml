@@ -1,0 +1,80 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.WorkOrders.WorkOrder_List_ViewModel
+@{
+	ViewBag.Title = "Work Orders";
+	var businessEntitiesSelectList = Model.BusinessEntityList.ToSelectList(i => i.Id, i => i.Value, Model.SelectedBusinessEntityId.HasValue ? Model.SelectedBusinessEntityId.Value : Guid.NewGuid());
+	var usersSelectList = Model.UsersList.ToSelectList(i => i.Id, i => i.Value, Model.SelectedUserId.HasValue ? Model.SelectedUserId.Value : Guid.NewGuid());
+}
+<div class="navbar-collapse collapse ">
+	<header><h2>@ViewBag.Title</h2></header>
+</div>
+<br />
+<a href="@Url.Action("Create")" class="btn btn-default btn-xs">Log New Work Order</a>
+@using (Html.BeginForm("Index", "WorkOrders", FormMethod.Get, new {  }))
+{
+	@*@Html.ValidationSummary()*@
+	<div class="strip-noborder">
+		<div class="pull-left ">
+			<label>Search @Html.TextBoxFor(model => model.SearchText, new { @class = "width-2" })</label> 
+			<label>Dates @Html.TextBoxFor(model => model.FromDate, "{0:dd MMM yyyy}", new { @class = "width-2" })</label> <label>- @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM yyyy}", new { @class = "width-2" })</label>
+			<label>Businesses @Html.DropDownListFor(model => model.SelectedBusinessEntityId, businessEntitiesSelectList, "All")</label>
+			<label>Users @Html.DropDownListFor(model => model.SelectedUserId, usersSelectList, "Not Assigned")</label>
+			<label>Sort by @Html.EnumDropDownListFor(model => model.SortBy)</label>
+		</div>
+		&nbsp;
+		<div class="pull-right ">
+			<input type="button" name="btnSearch" id="btnSearch" value="Search" class="btn btn-primary btn-xs" />
+		</div>
+	</div>
+}
+<div class="row">
+	@if (Model != null && Model.List != null && Model.List.Any())
+	{
+		<ul class="item-list item-hover">
+			@for (int i = 0; i < Model.List.Count; i++)
+			{
+				<li class="list-item border-bottom">
+					<a href="@Url.Action("Details", new {id = Model.List[i].Id})">
+						@Html.ValueFor(model => model.List[i].WorkOrderId, "{0} : ")
+						@Html.ValueFor(model => model.List[i].Title, "{0} : ")
+						(@Html.DisplayFor(model => model.List[i].Age, "AgeShortDisplay"))
+						<div class="pull-right">
+							@Html.ValueFor(model => model.List[i].Reference, "({0}) ")
+						</div>
+					</a>
+				</li>
+			}
+		</ul>
+	}
+	else
+	{
+		<p>There are no work orders.</p>
+	}
+</div>
+@section scripts{
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("input[name='btnSearch']").click(function () {
+				$(this).submitForm();
+			});
+			$("input[name='SearchText']").change(function () {
+				$(this).submitForm();
+			});
+			$("input[name='FromDate']").change(function () {
+				$(this).submitForm();
+			});
+			$("input[name='ToDate']").change(function () {
+				$(this).submitForm();
+			});
+			$("select[name='SelectedBusinessEntityId']").change(function () {
+				$(this).submitForm();
+			});
+			$("select[name='SelectedUserId']").change(function () {
+				$(this).submitForm();
+			});
+			$("select[name='SortBy']").change(function () {
+				$(this).submitForm();
+			});
+		});
+	</script>
+}

@@ -1,0 +1,20 @@
+﻿@model List<Sql_Auto_Data_Discovery.Business.Models.SqlObjectsModel>
+<div class="jumbotron">
+    @if (Model != null && Model.Count > 0)
+    {
+        <p>What view do you want to look at?</p>
+        foreach (var item in Model)
+        {
+            <div>
+                @Html.ActionLink(linkText: item.name
+                    , actionName: ""
+                    , routeValues: new { c = item.object_id }
+                    , htmlAttributes: new { @class = "btn btn-default" })
+            </div>
+        }
+    }
+    else
+    {
+        <p>No Connections has been setup. Please contact your system adminitrator!</p>
+    }
+</div>

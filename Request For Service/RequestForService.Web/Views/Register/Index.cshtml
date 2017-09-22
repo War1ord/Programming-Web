@@ -1,0 +1,21 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.Registration.NewRegistrationViewModel
+@{ViewBag.Title = "Registration";}
+<p>
+	<h2>@ViewBag.Title</h2>
+</p>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@*@Html.ValidationSummary()*@
+	@*@Html.PartialFor(m => m.Result, "_ResultMessage")*@
+
+	@Html.PartialFor(m => m.Registration, "_Registration")
+
+	<hr />
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" value="Submit" class="btn btn-primary" />
+		</div>
+	</div>
+}

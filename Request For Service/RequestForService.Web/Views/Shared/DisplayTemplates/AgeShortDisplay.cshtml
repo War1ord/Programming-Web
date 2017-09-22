@@ -1,0 +1,87 @@
+﻿@model TimeSpan
+@{
+	string display;
+	
+//	var now = DateTime.Now;
+//	var dateTime = now.Subtract(Model);
+	
+}
+@if (Model.Days > 0)
+{
+	if (Model.TotalDays < 1)
+	{
+		display = "Yesterday";
+	}
+	else if (Model.TotalDays < 7)
+	{
+		display = "This week";
+	}
+	else if (Model.TotalDays < 7 * 2)
+	{
+		display = "Last week";
+	}
+	else
+	{
+		display = string.Format("{0} Days ago", Model.Days);
+	}
+}
+else if (Model.Hours > 0)
+{
+	if (Model.Hours < 2)
+	{
+		if (Model.TotalHours <= 1)
+		{
+			display = "a Hour ago";
+		}
+		else
+		{
+			display = string.Format("{0} Hours ago", Model.Hours);
+		}
+	}
+	else
+	{
+		display = string.Format("{0} Hours ago", Model.Hours);
+	}
+}
+else if (Model.Minutes > 0)
+{
+	if (Model.Minutes < 2)
+	{
+		if (Model.TotalMinutes <= 1)
+		{
+			display = "a Minute ago";
+		}
+		else
+		{
+			display = string.Format("{0} Minutes ago", Model.Minutes);
+		}
+	}
+	else
+	{
+		display = string.Format("{0} Minutes ago", Model.Minutes);
+	}
+}
+else if (Model.Seconds > 0)
+{
+	if (Model.Seconds < 2)
+	{
+		if (Model.TotalSeconds <= 1)
+		{
+			display = "a Second ago";
+		}
+		else
+		{
+			display = string.Format("{0} Seconds ago", Model.Seconds);
+		}
+	}
+	else
+	{
+		display = string.Format("{0} Seconds ago", Model.Seconds);
+	}
+}
+else
+{
+	display = "Less then a Second ago";
+}
+@Html.Encode(display)
+@*@Model*@

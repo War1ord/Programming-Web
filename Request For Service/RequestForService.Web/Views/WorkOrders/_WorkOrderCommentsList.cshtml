@@ -1,0 +1,32 @@
+﻿@model RequestForService.Models.List.KeyList<Guid, RequestForService.Models.WorkOrders.WorkOrderComment>
+<div class="row col-sm-12">
+    @if (Model != null)
+    {
+        if (Model.Any())
+        {
+            <div>
+                @foreach (var item in Model)
+                {
+                    <div>
+                        @item.Description
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div>
+                No comments
+                @Html.ActionLink("Add", "Add", "WorkOrderComments"
+                    , new {id = Model.Key}
+                    , new {@class = "btn btn-xs btn-default"})
+            </div>
+        }
+    }
+    else
+    {
+        <div>
+            @Global.Message.UnexpectedError
+        </div>
+    }
+</div>

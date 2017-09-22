@@ -1,0 +1,31 @@
+﻿@model List<Sql_Auto_Data_Discovery.Business.Models.SqlObjectsModel>
+<div class="jumbotron">
+    @if (Model != null && Model.Count > 0)
+    {
+        <p>What data on this database do you want to look at?</p>
+        var grouping = Model.GroupBy(i => i.type_desc);
+        <div class="row">
+            @foreach (var itemgroup in grouping)
+            {
+                <div class="col-md-12 row">
+                    <div class="table-bordered label-default text-center">@itemgroup.Key</div>
+                    <ul class="table-bordered">
+                        @foreach (var item in itemgroup)
+                        {
+                            <li class="list-inline">
+                                @Html.ActionLink(linkText: item.name
+                                    , actionName: "Details"
+                                    , routeValues: new { t = item.name, }
+                                    , htmlAttributes: new { @class = "btn btn-default" })
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No objects under this database.</p>
+    }
+</div>

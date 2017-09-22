@@ -1,0 +1,13 @@
+﻿@model RequestForService.Models.Errors.ErrorLog
+@if (Model != null)
+{
+	<li class="list-item-custom1">
+		<a href="@(Url.Action("Details", new {id = Model.Id}))">
+			@Html.DisplayFor(model => model.Age, "AgeShortDisplay") : 
+			@Model.Message :
+			Class:@(Model.Class)
+			Method:@(Model.Method)
+			@(Model.CreatedByUserId.HasValue ? string.Format("By {0} {1}", Model.CreatedByUser.Person.FirstName, Model.CreatedByUser.Person.LastName) : string.Empty)
+		</a>
+	</li>
+}

@@ -1,0 +1,82 @@
+﻿@using RequestForService.Web.Extentions
+@using RequestForService.Models.WorkOrders
+@model WorkOrder
+<div class="row">
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-4">@Html.LabelFor(model => model.WorkOrderType.Name, "Type")</div>
+            <div class="col-sm-8">
+                @Html.DisplayFor(model => model.WorkOrderType.Name)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">@Html.LabelFor(model => model.Priority, "Priority")</div>
+            <div class="col-sm-8">
+                @Html.DisplayFor(model => model.Priority)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">@Html.LabelFor(model => model.Reference, "Reference")</div>
+            <div class="col-sm-8">
+                @Html.DisplayFor(model => model.Reference)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">@Html.LabelFor(model => model.Title, "Title")</div>
+            <div class="col-sm-8">
+                @Html.DisplayFor(model => model.Title)
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-4">@Html.LabelFor(model => model.CreatedByUser, "Created By")</div>
+            <div class="col-sm-8">
+                @Html.DisplayFor(model => model.CreatedByUser.Person.FullNames)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">@Html.LabelFor(model => model.DateCreated, "Created")</div>
+            <div class="col-sm-8">
+                @Html.DisplayFor(model => model.DateCreated)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">@Html.LabelFor(model => model.Status, "Status")</div>
+            <div class="col-sm-8">
+                @Html.DisplayFor(model => model.Status)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">@Html.LabelFor(model => model.HourlyRate, "Hourly Rate")</div>
+            <div class="col-sm-8">
+                @Html.DisplayFor(model => model.HourlyRate.Price)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">@Html.LabelFor(model => model.AssignedToUser, "Assigned To")</div>
+            <div class="col-sm-8">
+                @Html.DisplayFor(model => model.AssignedToUser.Person.FullNames)
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row col-sm-12 text-center pad-bottom-2">
+    <div class="col-sm-12 row text-left ">
+        @Html.LabelFor(model => model.Description, "Description", new { @class = "control-label " })
+    </div>
+    <div class="col-sm-12 row text-left ">
+        @Html.DisplayWithBreaksFor(model => model.Description)
+    </div>
+</div>
+<div class="row col-sm-12 pad-bottom-2">
+    <div class="col-sm-7 table-bordered">
+        @Html.PartialFor(model => model.WorkOrderCommentsKeyList, "_WorkOrderCommentsList")
+    </div>
+    <div class="col-sm-5 table-bordered">
+        @Html.PartialFor(model => model.WorkOrderNotesKeyList, "_WorkOrderNotesList")
+    </div>
+</div>
+<div class="row col-sm-12 pad-bottom-2">
+    @Html.PartialFor(model => model.WorkItemsKeyList, "_WorkItemsList")
+</div>

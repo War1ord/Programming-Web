@@ -1,0 +1,29 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.WorkOrderComments.WorkOrderComments_Add_ViewModel
+<div class="row col-sm-12">
+@if (Model != null && Model.WorkOrder != null)
+{
+    using (Html.BeginForm())
+    {
+        ViewBag.Title = string.Format("Work Order {0} - {1}", Model.WorkOrder.WorkOrderId, Model.WorkOrder.Title);
+        <header><h2>@ViewBag.Title</h2></header>
+        @Html.AntiForgeryToken()
+        @*@Html.ValidationSummary()*@
+        @*@Html.PartialFor(model => model.Result, "_ResultMessage")*@
+        @Html.PartialFor(model => model.WorkOrder, "_Details")
+        @Html.PartialFor(model => model.WorkOrder.WorkOrderCommentsKeyList, "_CommentsList")
+        @Html.PartialFor(model => model.Comment, "_New")
+        <div class="strip-bordered">
+            <input type="submit" value="Submit" class="btn btn-default" />
+            @Html.ActionLink("Cancel", "Details", "WorkOrders", new { id = Model.WorkOrder.Id }, new { @class = "btn btn-default" })
+        </div>
+        @Html.HiddenFor(model => model.WorkOrder.Id)
+    }
+}
+else
+{
+    <p>
+        @Global.Message.UnexpectedError
+    </p>
+}
+</div>

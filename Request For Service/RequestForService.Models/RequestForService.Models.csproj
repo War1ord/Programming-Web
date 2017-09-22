@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8663CE81-C3FA-4A90-A32D-20162310A5E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RequestForService.Models</RootNamespace>
+    <AssemblyName>RequestForService.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.121\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\BusinessEntityCreatedByBase.cs" />
+    <Compile Include="Base\CreatedByBase.cs" />
+    <Compile Include="Base\EnumBase.cs" />
+    <Compile Include="Base\IdBase.cs" />
+    <Compile Include="Base\ModelBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Base\WorkItemCreatedByBase.cs" />
+    <Compile Include="Base\WorkOrderCreatedByBase.cs" />
+    <Compile Include="BusinessEntities\BusinessEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessEntities\IndustryArea.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessEntities\IndustryLevel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\EnumChange.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\EnumGender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\EnumJobTitle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\EnumNoteType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\EnumTitle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\EnumWorkItemStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\EnumPriority.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\EnumWorkOrderStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Errors\ErrorLog.cs" />
+    <Compile Include="Filters\IsTrue.cs" />
+    <Compile Include="ComplexTypes\ContactDetails.cs" />
+    <Compile Include="ComplexTypes\JobDetails.cs" />
+    <Compile Include="ComplexTypes\Person.cs" />
+    <Compile Include="List\KeyList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\Registration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Users\User.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrders\WorkItemLog.cs" />
+    <Compile Include="WorkOrders\WorkOrderAttachment.cs" />
+    <Compile Include="WorkOrders\Category.cs" />
+    <Compile Include="WorkOrders\WorkOrderComment.cs" />
+    <Compile Include="WorkOrders\Estimation.cs" />
+    <Compile Include="WorkOrders\WorkOrderHistory.cs" />
+    <Compile Include="WorkOrders\HourlyRate.cs" />
+    <Compile Include="WorkOrders\Invoice.cs" />
+    <Compile Include="WorkOrders\WorkOrderNote.cs" />
+    <Compile Include="WorkOrders\WorkOrderType.cs" />
+    <Compile Include="WorkOrders\WorkItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrders\WorkOrder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RequestForService.DataTypes\RequestForService.DataTypes.csproj">
+      <Project>{667a72b3-88fc-45b3-a76e-b90ade488914}</Project>
+      <Name>RequestForService.DataTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RequestForService.Security\RequestForService.Security.csproj">
+      <Project>{7D336744-D55F-4B98-AE33-162DBADFF7F8}</Project>
+      <Name>RequestForService.Security</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NotMapped\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

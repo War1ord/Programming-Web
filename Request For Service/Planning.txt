@@ -1,0 +1,107 @@
+Project Plan
+	User Interface
+		Users are bound to a business unit and cannot view other business units data. 
+			Note: This business units has hierarchy and so users can view data of child business units but not parent business units.
+		New User Entry Point
+			Admin User invites user with email address
+			New User validates via email
+		Regular User
+			Log new work order
+			Search Existing work orders
+		Admin User
+			Same functions as Regular Users plus extra
+			Manage
+				Business Units
+					Business Industry
+						Add
+						Update
+						Delete
+					Business Unit Category
+						Add
+						Update
+						Delete
+					Business Unit
+						Add
+						Update
+						Delete
+				Roles
+					Add
+					Update
+					Delete
+				Rights
+					Assign
+					Remove
+				Users
+					Add
+					Update
+					Delete
+				Work Orders
+					Categories
+						Add
+						Update
+						Delete
+					Hourly Rates
+						Add
+						Update
+						Delete
+					Projects
+						Add
+						Update
+						Remove
+		Attachments
+			Add
+			Update
+			Remove
+User Interface
+	Users are bound to a business unit and cannot view other business units data. 
+		Note: This business units has hierarchy and so users can view data of child business units but not parent business units.
+	New User Entry Point
+		Admin User invites user with email address
+		New User validates via email
+	Regular User
+		Log new work order
+		Search Existing work orders
+	Admin User
+		Same functions as Regular Users plus extra
+		Manage
+			Business Units
+				Business Industry
+					Add
+					Update
+					Delete
+				Business Unit Category
+					Add
+					Update
+					Delete
+				Business Unit
+					Add
+					Update
+					Delete
+			Roles
+				Add
+				Update
+				Delete
+			Rights
+				Assign
+				Remove
+			Users
+				Add
+				Update
+				Delete
+			Work Orders
+				Categories
+					Add
+					Update
+					Delete
+				Hourly Rates
+					Add
+					Update
+					Delete
+				Projects
+					Add
+					Update
+					Remove
+	Attachments
+		Add
+		Update
+		Remove

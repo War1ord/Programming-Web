@@ -1,0 +1,7 @@
+﻿@model RequestForService.Models.WorkOrders.HourlyRate
+@if (Model != null)
+{
+	<li class="list-item">
+		<a href="@(Url.Action("Update", new {id = Model.Id}))" class="btn btn-info">@Model.Price</a>
+	</li>
+}

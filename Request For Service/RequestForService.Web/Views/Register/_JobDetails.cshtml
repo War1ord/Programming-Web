@@ -1,0 +1,12 @@
+﻿@model RequestForService.Models.ComplexTypes.JobDetails
+<div class="form-horizontal">
+    <h4>Job Details</h4>
+	<hr />
+	<div class="form-group">
+		@Html.LabelFor(model => model.JobTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.JobTitle)
+			@Html.ValidationMessageFor(model => model.JobTitle)
+		</div>
+	</div>
+</div>

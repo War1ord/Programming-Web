@@ -1,0 +1,65 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.WorkOrders.WorkOrder_ViewModel
+@{ ViewBag.Title = "Log New Work Order"; }
+<header><h2>@ViewBag.Title</h2></header>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@*@Html.ValidationSummary()*@
+	@*@Html.PartialFor(model => model.Result, "_ResultMessage")*@
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="row">
+				<div class="col-sm-4">
+					@Html.LabelFor(model => model.WorkOrder.WorkOrderTypeId, new { @class = "control-label " })
+				</div>
+				<div class="col-sm-8">
+					@Html.DropDownListFor(model => model.WorkOrder.WorkOrderTypeId, Model.WorkOrderTypes.ToSelectList(i => i.Id, i => i.Value, Model.WorkOrder.WorkOrderTypeId), "Please select...", new { @class = "form-control input-sm width-5" })
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					@Html.LabelFor(model => model.WorkOrder.Priority, new { @class = "control-label " })
+				</div>
+				<div class="col-sm-8">
+					@Html.EnumDropDownListFor(model => model.WorkOrder.Priority, htmlAttributes: new { @class = "form-control input-sm width-5" })
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					@Html.LabelFor(model => model.WorkOrder.Reference, new { @class = "control-label " })
+				</div>
+				<div class="col-sm-8">
+					@Html.TextBoxFor(model => model.WorkOrder.Reference, new { @class = "form-control input-sm width-4" })
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					@Html.LabelFor(model => model.WorkOrder.Title, new { @class = "control-label " })
+				</div>
+				<div class="col-sm-8">
+					@Html.TextBoxFor(model => model.WorkOrder.Title, new { @class = "form-control input-sm width-4" })
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			
+		</div>
+	</div>
+	<hr/>
+	<div class="row">
+		<div class="col-sm-12 text-center">
+			@Html.LabelFor(model => model.WorkOrder.Description, new { @class = "control-label " })
+			<div class="row">
+				@Html.TextAreaFor(model => model.WorkOrder.Description, new { @class = "form-control width-full height-4" })
+			</div>
+		</div>
+	</div>
+	<div class="strip-bordered">
+		@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+		<input type="submit" value="Save" class="btn btn-primary" />
+	</div>
+}
+@*@section Scripts {
+	@Scripts.Render("~/bundles/workorderedit")
+}*@

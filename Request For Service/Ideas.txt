@@ -1,0 +1,1 @@
+- Idea for Request for service site. Users as resources per client or business entity, resource as in a user that can work on work orders.

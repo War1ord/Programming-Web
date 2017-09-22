@@ -1,0 +1,24 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.WorkOrderTypes.WorkOrderTypesListViewModel
+@{ ViewBag.Title = "Work Order Types";}
+<p>
+	<h2>
+		@ViewBag.Title <a href="@Url.Action("Add")" class="btn btn-default">Add</a>
+	</h2>
+</p>
+@if (Model != null)
+{
+	if (Model.List != null && Model.List.Count > 0)
+	{
+		<ul class="item-list">
+			@for (int i = 0; i < Model.List.Count; i++)
+			{
+				@Html.PartialFor(model => model.List[i], "_Summary")
+			}
+		</ul>
+	}
+	else
+	{
+		<p>There is no Work Order Types listed. Please add some?</p>
+	}
+}

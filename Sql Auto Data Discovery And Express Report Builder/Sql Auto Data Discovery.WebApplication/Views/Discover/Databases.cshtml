@@ -1,0 +1,23 @@
+﻿@model List<KeyValuePair<string, System.Data.SqlClient.SqlConnectionStringBuilder>>
+<div class="jumbotron">
+    @if (Model != null && Model.Count > 0)
+    {
+        <p>What database do you want to look at?</p>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li class="list-inline">
+                    @Html.ActionLink(linkText: item.Key
+                        , actionName: "Objects"
+                        , routeValues: new { c = item.Key }
+                        , htmlAttributes: new { @class = "btn btn-default" })
+                </li>
+            }
+        </ul>
+        <i>Please contact your administrator if you need another connection setup.</i>
+    }
+    else
+    {
+        <p>No Connections has been setup. Please contact your system adminitrator!</p>
+    }
+</div>

@@ -1,0 +1,31 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.BusinessEntities.BusinessEntitiesListViewModel
+@{ ViewBag.Title = "Business Entities"; }
+<p>
+	<h2>
+		@ViewBag.Title @string.Format("{0}", Model.ParentEntityId.HasValue ? "of " + Model.ParentParentEntityName : string.Empty)
+		<a href="@Url.Action("Add", new {id = Model.ParentEntityId.HasValue ? Model.ParentEntityId.ToString() : string.Empty})" class="btn btn-default">Add</a>
+		@if (Model.ParentEntityId.HasValue)
+		{
+			<a href="@Url.Action("Index", new {id = Model.ParentParentEntityId.HasValue ? Model.ParentParentEntityId.ToString() : string.Empty})" class="btn btn-default">Up</a>
+		}
+	</h2>
+</p>
+@if (Model != null)
+{
+	if (Model.List != null && Model.List.Count > 0)
+	{
+		<ul class="item-list">
+			@for (int i = 0; i < Model.List.Count; i++)
+			{
+				@Html.PartialFor(model => model.List[i], "_Summary")
+			}
+		</ul>
+	}
+	else
+	{
+		<tr>
+			<td colspan="7">There is no business entities listed.</td>
+		</tr>
+	}
+}

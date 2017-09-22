@@ -1,0 +1,30 @@
+﻿@model RequestForService.Models.List.KeyList<Guid, RequestForService.Models.WorkOrders.WorkItem>
+<div class="row col-sm-12">
+    @if (Model != null)
+    {
+        if (Model.Any())
+        {
+            <div>
+                @foreach (var item in Model)
+                {
+                    <div>
+                        @item.Description
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div>
+                No work items
+                @Html.ActionLink("Add", "Add", "WorkItems", new { id = Model.Key }, new { @class = "btn btn-xs btn-default" })
+            </div>
+        }
+    }
+    else
+    {
+        <div>
+            @Global.Message.UnexpectedError
+        </div>
+    }
+</div>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4DCA21BD-C851-4B39-8771-43B24CCC6723}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Project_Manager.Data.Model</RootNamespace>
+    <AssemblyName>Project Manager.Data.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Finance\Account.cs" />
+    <Compile Include="Base\BugBase.cs" />
+    <Compile Include="Bug\Bug.cs" />
+    <Compile Include="Bug\BugAssignedUsers.cs" />
+    <Compile Include="Bug\BugComment.cs" />
+    <Compile Include="Bug\BugNote.cs" />
+    <Compile Include="Bug\BugRequirement.cs" />
+    <Compile Include="Bug\BugTagLink.cs" />
+    <Compile Include="Bug\BugTechnicalNote.cs" />
+    <Compile Include="Bug\BugTest.cs" />
+    <Compile Include="Error\DevelopmentException.cs" />
+    <Compile Include="Project\ProjectComment.cs" />
+    <Compile Include="Project\ProjectNote.cs" />
+    <Compile Include="Project\ProjectRequirement.cs" />
+    <Compile Include="Project\ProjectTechnicalNote.cs" />
+    <Compile Include="Project\ProjectTest.cs" />
+    <Compile Include="Project\ProjectWorkFlow.cs" />
+    <Compile Include="Bug\RelatedBugLink.cs" />
+    <Compile Include="Project\RelatedProjectLink.cs" />
+    <Compile Include="User\UserAdmin.cs" />
+    <Compile Include="Base\EnumBase.cs" />
+    <Compile Include="Base\ModelBase.cs" />
+    <Compile Include="Base\ProjectBase.cs" />
+    <Compile Include="Finance\Invoice.cs" />
+    <Compile Include="Finance\InvoiceItem.cs" />
+    <Compile Include="Project\Project.cs" />
+    <Compile Include="Project\ProjectInvoiceLink.cs" />
+    <Compile Include="Project\ProjectAssignedUsers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Project\ProjectTagLink.cs" />
+    <Compile Include="Manage\Tag.cs" />
+    <Compile Include="User\User.cs" />
+    <Compile Include="Project\WorkFlowStep.cs" />
+    <Compile Include="Project\ProjectWorkItem.cs" />
+    <Compile Include="Project\WorkLog.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Project Manager - Models.xmind" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

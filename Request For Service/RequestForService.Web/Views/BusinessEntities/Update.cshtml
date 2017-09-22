@@ -1,0 +1,20 @@
+﻿@using RequestForService.Web.Extentions
+@model RequestForService.Web.ViewModels.BusinessEntities.BusinessEntityItemViewModel
+@{ ViewBag.Title = "Update a Business Entity"; }
+<p>
+	<h2>@ViewBag.Title</h2>
+</p>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@*@Html.ValidationSummary()*@
+	@*@Html.PartialFor(model => model.Result, "_ResultMessage")*@
+	@Html.HiddenFor(model => model.BusinessEntity.Id)
+	@Html.PartialFor(model => model.BusinessEntity, "_Edit")
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<a href="@Url.Action("Index")" class="btn btn-default">Cancel</a>
+			<input type="submit" value="Save" class="btn btn-primary" />
+		</div>
+	</div>
+}
